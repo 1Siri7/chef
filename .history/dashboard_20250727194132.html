@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chef Dashboard - Zavoryaf</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <header>
+      <h2>👨‍🍳 Welcome, Chef Siri</h2>
+      <button onclick="logout()">Logout</button>
+    </header>
+
+    <section class="dashboard">
+      <div class="card">
+        <h3>📋 Orders</h3>
+        <p>10 Pending | 5 Preparing | 8 Completed</p>
+      </div>
+
+      <div class="card">
+        <h3>🍛 Dishes</h3>
+        <ul id="dishList">
+          <li>Paneer Butter Masala</li>
+          <li>Veg Biryani</li>
+        </ul>
+        <input type="text" id="newDish" placeholder="Add new dish" />
+        <button onclick="addDish()">Add</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function logout() {
+      window.location.href = "index.html";
+    }
+
+    function addDish() {
+      const input = document.getElementById("newDish");
+      const dish = input.value.trim();
+      if (dish) {
+        const li = document.createElement("li");
+        li.textContent = dish;
+        document.getElementById("dishList").appendChild(li);
+        input.value = "";
+      }
+    }
+  </script>
+</body>
+</html>

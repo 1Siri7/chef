@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chef Dashboard - Zavoryaf</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <header>
+      <h2>👨‍🍳 Welcome, Chef Siri</h2>
+      <button onclick="logout()">Logout</button>
+    </header>
+
+    <section class="dashboard">
+      <!-- Orders Section -->
+      <div class="card">
+        <h3>📋 Orders</h3>
+        <ul id="orderList">
+          <li>Paneer Biryani - <span class="status pending">Pending</span> <button onclick="updateOrderStatus(this)">Next</button></li>
+          <li>Veg Curry - <span class="status preparing">Preparing</span> <button onclick="updateOrderStatus(this)">Next</button></li>
+          <li>Fried Rice - <span class="status completed">Completed</span></li>
+        </ul>
+      </div>
+
+      <!-- Dishes Section -->
+      <div class="card">
+        <h3>🍛 Dishes</h3>
+        <label for="dishCategory">Category:</label>
+        <select id="dishCategory">
+          <option value="starters">Starters</option>
+          <option value="main-course">Main Course</option>
+          <option value="desserts">Desserts</option>
+          <option value="drinks">Drinks</option>
+        </select>
+
+        <input type="text" id="newDish" placeholder="Dish name" />
+        <input type="number" id="dishPrice" placeholder="Price (₹)" />
+        <input type="file" id="dishImage" accept="image/*" capture="environment" />
+        <button onclick="addDish()">Add</button>
+
+        <h4>Starters</h4>
+        <ul id="startersList"></ul>
+        <li>
+  
+  Dish Name - ₹100
+  <button onclick="editDish(this)">Edit</button>
+  <button onclick="deleteDish(this)">Delete</button>
+</li>
+
+
+        <h4>Main Course</h4>
+        <ul id="main-courseList"></ul>
+
+        <h4>Desserts</h4>
+        <ul id="dessertsList"></ul>
+
+        <h4>Drinks</h4>
+        <ul id="drinksList"></ul>
+      </div>
+
+      <!-- Analytics Section -->
+      <div class="card">
+        <h3>📊 Analytics</h3>
+        <p>Total Orders: 15</p>
+        <p>Completed: 10</p>
+        <p>Pending: 3</p>
+        <p>Preparing: 2</p>
+      </div>
+
+      <!-- Payout Section -->
+      <div class="card">
+        <h3>💸 Payouts</h3>
+        <p>Total Earnings: ₹2,500</p>
+        <p>Pending Payout: ₹800</p>
+        <button>Request Payout</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

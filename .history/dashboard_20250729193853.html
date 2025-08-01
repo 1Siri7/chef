@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chef Dashboard - Zavoryaf</title>
+</head>
+<body>
+
+  <h2>Chef Dashboard</h2>
+
+  <input type="text" id="newDish" placeholder="Dish name" />
+  <input type="number" id="dishPrice" placeholder="Price" />
+  <input type="file" id="dishImage" accept="image/*" />
+  <button onclick="addDish()">Add Dish</button>
+
+  <ul id="dishList"></ul>
+
+  <script>
+    function addDish() {
+      const nameInput = document.getElementById("newDish");
+      const priceInput = document.getElementById("dishPrice");
+      const imageInput = document.getElementById("dishImage");
+
+      const name = nameInput.value.trim();
+      const price = priceInput.value.trim();
+      const imageFile = imageInput.files[0];
+
+      if (!name || !price || !imageFile) {
+        alert("Please fill all fields and choose an image.");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const li = document.createElement("li");
+
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        img.alt = name;
+        img.width = 100;
+
+        const info = document.createElement("span");
+        info.className = "dish-info";
+        info.textContent = `${name} - ₹${price}`;
+
+        const editBtn = document.createElement("button");
+        editBtn.textContent = "Edit";
+        editBtn.onclick = function () {
+          editDish(li, img, info);
+        };
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.onclick = function () {
+          li.remove();
+        };
+
+        li.appendChild(img);
+        li.appendChild(info);
+        li.appendChild(editBtn);
+        li.appendChild(deleteBtn);
+
+        document.getElementById("dishList").appendChild(li);
+      };
+      reader.readAsDataURL(imageFile);
+
+      nameInput.value = "";
+      priceInput.value = "";
+      imageInput.value = "";
+    }
+
+    function editDish(li, img, infoSpan) {
+      const [oldName, oldPrice] = infoSpan.textContent.split(" - ₹");
+
+      const newName = prompt("Edit dish name:", oldName);
+      const newPrice = prompt("Edit dish price:", oldPrice);
+
+      if (!newName || !newPrice) {
+        alert("Name and price are required.");
+        return;
+      }
+
+      // Update name and price
+      infoSpan.textContent = `${newName} - ₹${newPrice}`;
+      img.alt = newName;
+
+      // Ask for new image
+      const newImageInput = document.createElement("input");
+      newImageInput.type = "file";
+      newImageInput.accept = "image/*";
+      newImageInput.style.display = "none";
+      document.body.appendChild(newImageInput);
+
+      newImageInput.onchange = function () {
+        const file = newImageInput.files[0];
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+        document.body.removeChild(newImageInput);
+      };
+
+      newImageInput.click();
+    }
+  </script>
+
+</body>
+</html>

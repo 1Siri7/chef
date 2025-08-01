@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chef Dashboard - Zavoryaf</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <header>
+      <h2>👨‍🍳 Welcome, Chef Siri</h2>
+      <button onclick="logout()">Logout</button>
+    </header>
+
+    <section class="dashboard">
+      <!-- Orders Section -->
+      <div class="card">
+        <h3>📋 Orders</h3>
+        <ul id="orderList">
+          <li>Paneer Biryani - <span class="status pending">Pending</span> <button onclick="updateOrderStatus(this)">Next</button></li>
+          <li>Veg Curry - <span class="status preparing">Preparing</span> <button onclick="updateOrderStatus(this)">Next</button></li>
+          <li>Fried Rice - <span class="status completed">Completed</span></li>
+        </ul>
+      </div>
+
+      <!-- Dishes Section -->
+      <div class="card">
+        <h3>🍛 Dishes</h3>
+        <ul id="dishList">
+          <li>
+            Veg Biryani
+            <input type="file" onchange="previewImage(this)">
+            <button onclick="editDish(this)">Edit</button>
+            <button onclick="deleteDish(this)">Delete</button>
+          </li>
+        </ul>
+        <input type="text" id="newDish" placeholder="Add new dish" />
+        <button onclick="addDish()">Add</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function logout() {
+      window.location.href = "index.html";
+    }
+
+    function addDish() {
+      const input = document.getElementById("newDish");
+      const dish = input.value.trim();
+      if (dish) {
+        const li = document.createElement("li");
+        li.innerHTML = `${dish} <input type='file' onchange='previewImage(this)'>
+                        <button onclick='editDish(this)'>Edit</button>
+                        <button onclick='deleteDish(this)'>Delete</button>`;
+        document.getElementById("dishList").appendChild(li);
+        input.value = "";
+      }
+    }
+
+    function deleteDish(btn) {
+      btn.parentElement.remove();
+    }
+
+    function editDish(btn) {
+      const li = btn.parentElement;
+      const currentName = li.childNodes[0].nodeValue.trim();
+      const newName = prompt("Edit dish name:", currentName);
+      if (newName) {
+        li.childNodes[0].nodeValue = newName + " ";
+      }
+    }
+
+    function previewImage(input) {
+      const file = input.files[0];
+      if (file) alert("Selected file: " + file.name);
+    }
+
+    function updateOrderStatus(button) {
+      const statusSpan = button.previousElementSibling;
+      const currentStatus = statusSpan.textContent.toLowerCase();
+      if (currentStatus === "pending") {
+        statusSpan.textContent = "Preparing";
+        statusSpan.className = "status preparing";
+      } else if (currentStatus === "preparing") {
+        statusSpan.textContent = "Completed";
+        statusSpan.className = "status completed";
+        button.remove();
+      }
+    }
+  </script>
+</body>
+</html>
