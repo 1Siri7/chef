@@ -371,18 +371,3 @@ button:hover {
     order: 4;
   }
 }
-@media screen and (max-width: 768px) {
-  .order-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .order-item button {
-    width: 100%;
-  }
-
-  .order-item .status {
-    margin: 6px 0;
-  }
-}
-
