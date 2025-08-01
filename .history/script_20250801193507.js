@@ -293,41 +293,18 @@ function updateOrderStatus(button) {
         button.remove(); // Remove the "Next" button once completed
     }
 }
-document.addEventListener("DOMContentLoaded", function () {
-  const loginForm = document.getElementById("loginForm");
-  const registerForm = document.getElementById("registerForm");
-  const loginBtn = document.getElementById("loginBtn");
-  const registerBtn = document.getElementById("registerBtn");
+// Handle login form submission
+document.getElementById("loginForm").addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent default form submission
 
-  // Toggle between Login/Register forms
-  loginBtn.addEventListener("click", () => {
-    loginForm.classList.remove("hidden");
-    registerForm.classList.add("hidden");
-    loginBtn.classList.add("active");
-    registerBtn.classList.remove("active");
-  });
+  const username = document.getElementById("loginUsername").value;
+  const password = document.getElementById("loginPassword").value;
 
-  registerBtn.addEventListener("click", () => {
-    registerForm.classList.remove("hidden");
-    loginForm.classList.add("hidden");
-    registerBtn.classList.add("active");
-    loginBtn.classList.remove("active");
-  });
-
-  // Login form submission logic
-  loginForm.addEventListener("submit", function (e) {
-    e.preventDefault(); // Prevent page reload
-
-    // You can add real validation here if needed
-    const email = loginForm.querySelector('input[type="email"]').value;
-    const password = loginForm.querySelector('input[type="password"]').value;
-
-    // Dummy check
-    if (email && password) {
-      // Redirect to dashboard
-      window.location.href = "dashboard.html";
-    } else {
-      alert("Please enter valid credentials.");
-    }
-  });
+  // Dummy credentials (replace this logic with real check later)
+  if (username === "admin" && password === "1234") {
+    // ✅ Redirect to dashboard.html on successful login
+    window.location.href = "dashboard.html";
+  } else {
+    alert("Invalid username or password");
+  }
 });
