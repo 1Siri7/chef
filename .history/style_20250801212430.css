@@ -175,6 +175,7 @@ header button:hover {
 .hidden {
   display: none;
 }
+/* ---------------- Mobile Styles: Red & White Theme ---------------- */
 /* ---------- Desktop Default Styles (side-by-side) ---------- */
 .dashboard-container {
   display: flex;
