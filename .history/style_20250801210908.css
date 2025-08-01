@@ -176,7 +176,7 @@ header button:hover {
   display: none;
 }
 /* ---------------- Mobile Styles: Red & White Theme ---------------- */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   body {
     padding: 10px;
   }
@@ -193,8 +193,6 @@ header button:hover {
     width: 100%;
     padding: 1rem;
     box-sizing: border-box;
-    flex-direction: column; /* add here for dashboard */
-    align-items: center;
   }
 
   .dish-item {
@@ -265,15 +263,5 @@ header button:hover {
   .login-btn,
   .register-btn {
     width: 50%;
-  }
-
-  .card, .section {
-    width: 90%;
-    margin: 10px 0;
-  }
-
-  .navbar {
-    flex-direction: column;
-    gap: 1rem;
   }
 }

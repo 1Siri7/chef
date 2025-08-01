@@ -176,7 +176,7 @@ header button:hover {
   display: none;
 }
 /* ---------------- Mobile Styles: Red & White Theme ---------------- */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   body {
     padding: 10px;
   }
@@ -193,8 +193,6 @@ header button:hover {
     width: 100%;
     padding: 1rem;
     box-sizing: border-box;
-    flex-direction: column; /* add here for dashboard */
-    align-items: center;
   }
 
   .dish-item {
@@ -266,9 +264,15 @@ header button:hover {
   .register-btn {
     width: 50%;
   }
+}
+@media screen and (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column; /* stack items vertically */
+    align-items: center;
+  }
 
   .card, .section {
-    width: 90%;
+    width: 90%; /* make cards take more width */
     margin: 10px 0;
   }
 
